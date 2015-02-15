@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodToDelegate", "MethodToDelegate\MethodToDelegate.csproj", "{11ABB85F-7D00-4A9C-8918-8D49B0111211}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodToDelegate.Test", "..\MethodToDelegate.Test\MethodToDelegate.Test.csproj", "{6672B66B-36C3-42C2-9420-D382AC8DEF29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodToDelegate.Test", "MethodToDelegate.Test\MethodToDelegate.Test.csproj", "{6672B66B-36C3-42C2-9420-D382AC8DEF29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
