@@ -7,8 +7,8 @@
     <ProjectGuid>{11ABB85F-7D00-4A9C-8918-8D49B0111211}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DITest.Core</RootNamespace>
-    <AssemblyName>DITest.Core</AssemblyName>
+    <RootNamespace>MethodToDelegate</RootNamespace>
+    <AssemblyName>MethodToDelegate</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,12 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionAttribute.cs" />
-    <Compile Include="DelegateHandler.cs" />
-    <Compile Include="DelegateSystem.cs" />
-    <Compile Include="DelegateTest.cs" />
-    <Compile Include="DI.cs" />
+    <Compile Include="DelegateHelper.cs" />
     <Compile Include="ImplementsAttribute.cs" />
+    <Compile Include="MethodBindingException.cs" />
+    <Compile Include="NinjectExtensions.cs" />
     <Compile Include="PartialSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

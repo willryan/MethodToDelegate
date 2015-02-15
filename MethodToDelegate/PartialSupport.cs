@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Ninject.Infrastructure.Language;
 
-namespace DITest.Core
+namespace MethodToDelegate
 {
     public static class PartialSupport
     {
@@ -209,6 +207,24 @@ namespace DITest.Core
         {
             return (a) => f(td1, a);
         }
+
+        public static Type GetFuncType(int numArgs)
+        {
+            switch (numArgs)
+            {
+                case 1: return typeof (Func<,>);
+                case 2: return typeof (Func<,,>);
+                case 3: return typeof (Func<,,,>);
+                case 4: return typeof (Func<,,,,>);
+                case 5: return typeof (Func<,,,,,>);
+                case 6: return typeof (Func<,,,,,,>);
+                case 7: return typeof (Func<,,,,,,,>);
+                case 8: return typeof (Func<,,,,,,,,>);
+                case 9: return typeof (Func<,,,,,,,,,>);
+                case 10: return typeof (Func<,,,,,,,,,,>);
+                default: return null;
+            }
+        }
     }
 
     public struct PartialIndex
@@ -239,22 +255,5 @@ namespace DITest.Core
             return Table[new PartialIndex {DependencyArity = dependencyArity, ArgumentArity = argumentArity}];
         }
 
-        public static Type GetFuncType(int numArgs)
-        {
-            switch (numArgs)
-            {
-                case 1: return typeof (Func<,>);
-                case 2: return typeof (Func<,,>);
-                case 3: return typeof (Func<,,,>);
-                case 4: return typeof (Func<,,,,>);
-                case 5: return typeof (Func<,,,,,>);
-                case 6: return typeof (Func<,,,,,,>);
-                case 7: return typeof (Func<,,,,,,,>);
-                case 8: return typeof (Func<,,,,,,,,>);
-                case 9: return typeof (Func<,,,,,,,,,>);
-                case 10: return typeof (Func<,,,,,,,,,,>);
-                default: return null;
-            }
-        }
     }
 }

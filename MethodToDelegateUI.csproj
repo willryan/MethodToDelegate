@@ -94,9 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="DITest.Core\DITest.Core.csproj">
+    <ProjectReference Include="MethodToDelegate\MethodToDelegate.csproj">
       <Project>{11ABB85F-7D00-4A9C-8918-8D49B0111211}</Project>
-      <Name>DITest.Core</Name>
+      <Name>MethodToDelegate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

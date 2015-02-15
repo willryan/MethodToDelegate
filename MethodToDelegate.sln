@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DITest", "DITest.csproj", "{A3BE256D-9D07-40C5-9D2B-3DE0B3090578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodToDelegate", "MethodToDelegate\MethodToDelegate.csproj", "{11ABB85F-7D00-4A9C-8918-8D49B0111211}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DITest.Core", "DITest.Core/DITest.Core.csproj", "{11ABB85F-7D00-4A9C-8918-8D49B0111211}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodToDelegate.Test", "..\MethodToDelegate.Test\MethodToDelegate.Test.csproj", "{6672B66B-36C3-42C2-9420-D382AC8DEF29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A3BE256D-9D07-40C5-9D2B-3DE0B3090578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3BE256D-9D07-40C5-9D2B-3DE0B3090578}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3BE256D-9D07-40C5-9D2B-3DE0B3090578}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3BE256D-9D07-40C5-9D2B-3DE0B3090578}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11ABB85F-7D00-4A9C-8918-8D49B0111211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11ABB85F-7D00-4A9C-8918-8D49B0111211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11ABB85F-7D00-4A9C-8918-8D49B0111211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11ABB85F-7D00-4A9C-8918-8D49B0111211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6672B66B-36C3-42C2-9420-D382AC8DEF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6672B66B-36C3-42C2-9420-D382AC8DEF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6672B66B-36C3-42C2-9420-D382AC8DEF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6672B66B-36C3-42C2-9420-D382AC8DEF29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
