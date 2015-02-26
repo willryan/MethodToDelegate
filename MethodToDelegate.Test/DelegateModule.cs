@@ -1,14 +1,21 @@
+using System.Linq;
 using Ninject.Infrastructure.Language;
 using Ninject.Modules;
 
-namespace MethodToDelegate
+namespace MethodToDelegate.Test
 {
     public class DelegateModule : NinjectModule
     {
         public override void Load()
         {
-            var bindEm = DelegateHelper.GetDelegateTypesAndMethods(typeof (DelegateExample));
-            bindEm.Map(info =>
+            new[]
+            {
+                typeof (DelegateExample),
+                typeof (ActionDelegateExample),
+                //typeof (GenericDelegateExample) 
+            }
+            .SelectMany(DelegateHelper.GetDelegateTypesAndMethods)
+            .Map(info =>
             {
                 Bind(info.DelegateType).ToPartiallyAppliedMethodInfo(info.MethodInfo);
             });

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MethodToDelegate
+namespace MethodToDelegate.Test
 {
     public delegate string PythagDisplay(double x, double y);
 

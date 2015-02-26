@@ -1,0 +1,63 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+
+namespace MethodToDelegate 
+{
+    public static class PartialExtensions 
+    {
+<#
+var appliedMax = 5;
+var remainingMax = 5;
+Func <string,int,string> commaSeparatedPrefix = (prefix, count) => 
+    string.Join(", ", Enumerable.Range(1,count).Select(n => prefix + n));
+Func <string,string, int,string> commaSeparatedArgs = (prefixType, prefixArg, count) => 
+    string.Join(", ", Enumerable.Range(1,count).Select(n => prefixType + n + " " + prefixArg + n));
+Func <string,string,string,string> join = (first, separator, last) =>
+    {
+        if (string.IsNullOrEmpty(first)) 
+        { 
+            return string.IsNullOrEmpty(last) ?  "" : last;
+        }
+        else if (string.IsNullOrEmpty(last)) { return first; }
+        else { return first + separator + last; }
+    };
+Func <string,string,string,string> wrap = (lWrap, content, rWrap) =>
+    string.IsNullOrEmpty(content) ? "" : (lWrap + content + rWrap);
+Func <string,string,string> cJoin = (first, last) => join(first, ", ", last);
+Func <string,string> genWrap = content => wrap("<", content, ">");
+for (var numApplied = 1; numApplied <= appliedMax; numApplied++)
+{
+    for (var numRemaining = 0; numRemaining <= remainingMax; numRemaining++)
+    {
+        var depArgsList = commaSeparatedArgs("TD", "td", numApplied);
+        var depList = commaSeparatedPrefix("td", numApplied);
+        var depTypeList = commaSeparatedPrefix("TD", numApplied);
+        var remainingTypeList = commaSeparatedPrefix("TA", numRemaining);
+        var remainingList = commaSeparatedPrefix("ta", numRemaining);
+        var remainingGenFunc = genWrap(cJoin(remainingTypeList, "TR"));
+        var allGenFunc = genWrap(cJoin(cJoin(depTypeList, remainingTypeList),"TR"));
+        var remainingGenAction = genWrap(remainingTypeList);
+        var allGenAction = genWrap(cJoin(depTypeList, remainingTypeList));
+#>
+        [PartialApplication(PartialApplicationType.Func, <#= numApplied #>,<#= numRemaining #>)] 
+        public static Func<#= remainingGenFunc #> Apply<#= allGenFunc #>(this Func<#= allGenFunc #> func, <#= depArgsList #>) 
+        {
+            return (<#= remainingList #>) => func(<#= cJoin(depList,remainingList) #>);
+        }
+
+        [PartialApplication(PartialApplicationType.Action, <#= numApplied #>,<#= numRemaining #>)] 
+        public static Action<#= remainingGenAction #> Apply<#= allGenAction #>(this Action<#= allGenAction #> act, <#= depArgsList #>) 
+        {
+            return (<#= remainingList #>) => act(<#= cJoin(depList,remainingList) #>);
+        }
+<#
+    }
+} 
+#>
+    }
+}

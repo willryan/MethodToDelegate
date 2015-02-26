@@ -42,15 +42,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DelegateExtensions.cs" />
+    <Compile Include="PartialApplicationAttribute.cs" />
     <Compile Include="DelegateHelper.cs" />
     <Compile Include="ImplementsAttribute.cs" />
     <Compile Include="MethodBindingException.cs" />
     <Compile Include="NinjectExtensions.cs" />
+    <Compile Include="PartialExtensions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartialExtensions.tt</DependentUpon>
+    </Compile>
     <Compile Include="PartialSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="PartialExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PartialExtensions.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

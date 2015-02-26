@@ -49,14 +49,18 @@ namespace MethodToDelegate
                     MethodDelegate = methodInfo.CreateDelegate(delgType)
                 };
             }
+
+            var partialType = methodInfo.ReturnType == typeof (void)
+                ? PartialApplicationType.Action
+                : PartialApplicationType.Func;
             var makeGenericArgs =
                 methodInfo.GetParameters()
                     .Select(p => p.ParameterType)
-                    .Concat(new[] {methodInfo.ReturnType})
+                    .Concat(partialType == PartialApplicationType.Func ? new[] {methodInfo.ReturnType} : new Type[0])
                     .ToArray();
-            var funcType = PartialSupport.GetFuncType(methodArgCount).MakeGenericType(makeGenericArgs);
+            var funcType = PartialSupport.GetFuncType(partialType, methodArgCount).MakeGenericType(makeGenericArgs);
             var methodDelg = methodInfo.CreateDelegate(funcType);
-            var conversionFunc = PartialTable.GetMethod(depCount, argCount).MakeGenericMethod(makeGenericArgs);
+            var conversionFunc = PartialTable.GetMethod(new PartialApplicationInfo(partialType, depCount, argCount)).MakeGenericMethod(makeGenericArgs);
 
             var depTypes =
                 methodInfo.GetParameters()
@@ -85,12 +89,8 @@ namespace MethodToDelegate
             var args = new object[info.DependencyTypes.Length + 1];
             args[0] = info.MethodDelegate;
             Array.Copy(deps, 0, args, 1, deps.Length);
-            var delgFunc = info.ConversionFunc.Invoke(null, args);
-            var delgFuncType = delgFunc.GetType();
-            var delgMethod =
-                (MethodInfo) delgFuncType.GetProperty("Method").GetMethod.Invoke(delgFunc, new object[] {});
-            var delgTarget = delgFuncType.GetProperty("Target").GetMethod.Invoke(delgFunc, new object[] {});
-            return Delegate.CreateDelegate(info.DelegateType, delgTarget, delgMethod);
+            var delgFunc = (Delegate)info.ConversionFunc.Invoke(null, args);
+            return delgFunc.ToDelegate(info.DelegateType);
         }
     }
 

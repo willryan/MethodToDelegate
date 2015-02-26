@@ -48,6 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionDelegateExample.cs" />
+    <Compile Include="ActionDelegateExampleTest.cs" />
+    <Compile Include="GenericDelegateGenerationTest.cs" />
+    <Compile Include="GenericDelegateExampleTest.cs" />
+    <Compile Include="GenericDelegateExample.cs" />
+    <Compile Include="ActionDelegateGenerationTest.cs" />
+    <Compile Include="PartialApplicationTest.cs" />
     <Compile Include="DelegateExampleTest.cs" />
     <Compile Include="DelegateExample.cs" />
     <Compile Include="DelegateModule.cs" />
