@@ -1,0 +1,50 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+
+namespace MethodToDelegate
+{
+<# var argsSupported = 10; #>
+    public static class PartialSupport
+    {
+        public static Type GetFuncType(PartialApplicationType type, int numArgs)
+        {
+            if (type == PartialApplicationType.Func)
+            {
+                switch (numArgs)
+                {
+                    case 0: return typeof(Func<>);
+<# 
+for (var i = 1; i <= argsSupported; i++) 
+{
+#>
+                    case <#= i #>: return typeof (Func<<#= string.Join(",", Enumerable.Repeat("",i+1)) #>>);
+<# 
+} 
+#>
+                    default: return null;
+                }
+            }
+            else
+            {
+                switch (numArgs)
+                {
+                    case 0: return typeof(Action);
+<# 
+for (var i = 1; i <= argsSupported; i++) 
+{
+#>
+                    case <#= i #>: return typeof (Action<<#= string.Join(",", Enumerable.Repeat("",i)) #>>);
+<# 
+} 
+#>
+                    default: return null;
+                }
+            }
+        }
+    }
+}

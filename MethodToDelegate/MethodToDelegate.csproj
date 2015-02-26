@@ -48,12 +48,22 @@
     <Compile Include="ImplementsAttribute.cs" />
     <Compile Include="MethodBindingException.cs" />
     <Compile Include="NinjectExtensions.cs" />
+    <Compile Include="PartialApplicationInfo.cs" />
     <Compile Include="PartialExtensions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PartialExtensions.tt</DependentUpon>
     </Compile>
-    <Compile Include="PartialSupport.cs" />
+    <None Include="PartialSupport.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PartialSupport.cs</LastGenOutput>
+    </None>
+    <Compile Include="PartialSupport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartialSupport.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PartialTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
