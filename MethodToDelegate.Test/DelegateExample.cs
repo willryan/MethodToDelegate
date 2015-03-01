@@ -12,37 +12,37 @@ namespace MethodToDelegate.Test
         public delegate double Pythag(double x, double y);
         public delegate string DoubleToString(double x);
 
-        [Implements(typeof(Add))]
+        [ToDelegate(typeof(Add))]
         public static double Addr(double a, double b)
         {
             return a + b;
         }
 
-        [Implements(typeof(Mult))]
+        [ToDelegate(typeof(Mult))]
         public static double Multr(double a, double b)
         {
             return a * b;
         }
 
-        [Implements(typeof(Sqrt))]
+        [ToDelegate(typeof(Sqrt))]
         public static double Sqrtr(double a)
         {
             return Math.Sqrt(a);
         }
 
-        [Implements(typeof(Pythag))]
+        [ToDelegate(typeof(Pythag))]
         public static double Pythagr(Add add, Mult mult, Sqrt sqrt, double x, double y)
         {
             return sqrt(add(mult(x, x), mult(y, y)));
         }
 
-        [Implements(typeof (DoubleToString))]
+        [ToDelegate(typeof (DoubleToString))]
         public static string DoubleToStringr(double x)
         {
             return x.ToString();
         }
 
-        [Implements(typeof(PythagDisplay))]
+        [ToDelegate(typeof(PythagDisplay))]
         public static string PythagD(Pythag pyt, DoubleToString itos, double x, double y)
         {
             return itos(pyt(x, y));

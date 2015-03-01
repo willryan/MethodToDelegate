@@ -5,10 +5,10 @@ namespace MethodToDelegate
 {
     [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
     [ImmutableObject(true)]
-    public sealed class ImplementsAttribute : Attribute
+    public sealed class ToDelegateAttribute : Attribute
     {
         public readonly Type Type;
-        public ImplementsAttribute(Type t)
+        public ToDelegateAttribute(Type t)
         {
             Type = t;
         }

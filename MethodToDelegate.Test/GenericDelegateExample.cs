@@ -11,7 +11,7 @@ namespace MethodToDelegate.Test
         public delegate T3 AdjustOne<T1,T3>(T1 one);
         public delegate T3 AdjustTwo<T2,T3>(T2 twi);
 
-        [Implements(typeof(AdjustOne<,>))]
+        [ToDelegate(typeof(AdjustOne<,>))]
         public static T3 AdjOne<T1,T3>(T1 changeMe)
         {
             if (typeof (T3) == typeof (int))
@@ -28,7 +28,7 @@ namespace MethodToDelegate.Test
             throw new Exception("NOPE");
         }
 
-        [Implements(typeof(AdjustTwo<,>))]
+        [ToDelegate(typeof(AdjustTwo<,>))]
         public static T3 AdjTwo<T2,T3>(T2 changeMe)
         {
             if (typeof (T3) == typeof (int))
@@ -45,7 +45,7 @@ namespace MethodToDelegate.Test
             throw new Exception("NOPE");
         }
 
-        [Implements(typeof (Combine<,,>))]
+        [ToDelegate(typeof (Combine<,,>))]
         public static T3 Combiner<T1, T2, T3>(AdjustOne<T1, T3> adj1, AdjustTwo<T2, T3> adj2, T1 t1, T2 t2)
         {
             var t3s = new[] {adj1(t1), adj2(t2)};

@@ -12,19 +12,19 @@ namespace MethodToDelegate.Test
 
         public delegate List<string> Repeat(string elem, int times);
 
-        [Implements(typeof(Repeat))]
+        [ToDelegate(typeof(Repeat))]
         public static List<string> Repeatr(string elem, int times)
         {
             return Enumerable.Repeat(elem, times).ToList();
         }
 
-        [Implements(typeof (AppendListToList))]
+        [ToDelegate(typeof (AppendListToList))]
         public static void Appendr(List<string> toChange, List<string> toAdd)
         {
             toChange.AddRange(toAdd);
         }
 
-        [Implements(typeof (RepeatedlyAddToList))]
+        [ToDelegate(typeof (RepeatedlyAddToList))]
         public static void RepAddr(Repeat repeater, AppendListToList appender, List<string> toChange, string elem, int times)
         {
             appender(toChange, repeater(elem, times));

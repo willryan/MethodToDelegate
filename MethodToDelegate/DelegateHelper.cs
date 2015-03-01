@@ -29,7 +29,7 @@ namespace MethodToDelegate
                 .Select(methodInfo =>
                 {
                     var attribute =
-                        (ImplementsAttribute) methodInfo.GetCustomAttributes().FirstOrDefault(a => a is ImplementsAttribute);
+                        (ToDelegateAttribute) methodInfo.GetCustomAttributes().FirstOrDefault(a => a is ToDelegateAttribute);
                     var delgType = attribute != null ? attribute.Type : null;
                     return new DelegateTypeAndMethodInfo {DelegateType = delgType, MethodInfo = methodInfo};
                 })

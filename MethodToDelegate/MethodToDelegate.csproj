@@ -47,7 +47,7 @@
     <Compile Include="DelegateExtensions.cs" />
     <Compile Include="PartialApplicationAttribute.cs" />
     <Compile Include="DelegateHelper.cs" />
-    <Compile Include="ImplementsAttribute.cs" />
+    <Compile Include="ToDelegateAttribute.cs" />
     <Compile Include="MethodBindingException.cs" />
     <Compile Include="NinjectExtensions.cs" />
     <Compile Include="PartialApplicationInfo.cs" />
