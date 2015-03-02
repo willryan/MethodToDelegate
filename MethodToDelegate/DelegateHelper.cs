@@ -36,6 +36,11 @@ namespace MethodToDelegate
                 .Where(obj => obj.DelegateType != null);
         }
 
+        public static DelegateBuildInfo CreateBuildInfo(DelegateTypeAndMethodInfo typeAndMethodInfo)
+        {
+            return CreateBuildInfo(typeAndMethodInfo.DelegateType, typeAndMethodInfo.MethodInfo);            
+        }
+
         public static DelegateBuildInfo CreateBuildInfo(Type delgType, MethodInfo methodInfo)
         {
             var argCount = delgType.GetMethods().First().GetParameters().Count();

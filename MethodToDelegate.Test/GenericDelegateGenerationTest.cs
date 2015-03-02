@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Ninject;
-using Ninject.Infrastructure.Language;
 using NUnit.Framework;
 
 namespace MethodToDelegate.Test
@@ -17,10 +15,10 @@ namespace MethodToDelegate.Test
         [SetUp]
         public void Before()
         {
-            var kernel = new StandardKernel();
-            kernel.Load(new DelegateModule());
-            //_optionOne = kernel.Get<Combine<int,int,string>>();
-            //_optionTwo = kernel.Get<Combine<string,string,int>>();
+            var di = new QDDI();
+            //di.Load(typeof(GenericDelegateExample));
+            //_optionOne = di.Get<Combine<int,int,string>>();
+            //_optionTwo = di.Get<Combine<string,string,int>>();
         }
 
         [Test]

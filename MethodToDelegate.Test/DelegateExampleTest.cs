@@ -2,8 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using Moq;
-using Ninject;
-using Ninject.Infrastructure.Language;
 using NUnit.Framework;
 
 namespace MethodToDelegate.Test

@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Ninject;
-using Ninject.Infrastructure.Language;
 using NUnit.Framework;
 
 namespace MethodToDelegate.Test
@@ -16,9 +14,9 @@ namespace MethodToDelegate.Test
         [SetUp]
         public void Before()
         {
-            var kernel = new StandardKernel();
-            kernel.Load(new DelegateModule());
-            _subject = kernel.Get<RepeatedlyAddToList>();
+            var di = new QDDI();
+            di.Load(typeof(ActionDelegateExample));
+            _subject = di.Get<RepeatedlyAddToList>();
         }
 
         [Test]

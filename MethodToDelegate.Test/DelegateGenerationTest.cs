@@ -1,8 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Ninject;
-using Ninject.Infrastructure.Language;
 using NUnit.Framework;
 
 namespace MethodToDelegate.Test
@@ -16,13 +14,13 @@ namespace MethodToDelegate.Test
         [SetUp]
         public void Before()
         {
-            var kernel = new StandardKernel();
-            kernel.Load(new DelegateModule());
+            var di = new QDDI();
+            di.Load(typeof(DelegateExample));
             // vanilla
             DelegateExample.Pythag vanillaPythag = (x, y) => DelegateExample.Pythagr(DelegateExample.Addr, DelegateExample.Multr, DelegateExample.Sqrtr, x, y);
             _vanilla = (x, y) => DelegateExample.PythagD(vanillaPythag, DelegateExample.DoubleToStringr, x, y);
             // Dependency generated
-            _dependencyGenerated = kernel.Get<PythagDisplay>();
+            _dependencyGenerated = di.Get<PythagDisplay>();
         }
 
         [Test]

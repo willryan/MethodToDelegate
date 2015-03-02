@@ -35,9 +35,6 @@
     <Reference Include="Moq">
       <HintPath>..\MethodToDelegate\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\MethodToDelegate\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -59,7 +56,7 @@
     <Compile Include="PartialApplicationTest.cs" />
     <Compile Include="DelegateExampleTest.cs" />
     <Compile Include="DelegateExample.cs" />
-    <Compile Include="DelegateModule.cs" />
+    <Compile Include="QDDI.cs" />
     <Compile Include="DelegateGenerationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
