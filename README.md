@@ -14,4 +14,6 @@ See the files in MethodToDelegate.Test/ for examples on how to set up delegate-b
 
 MethodToDelegate also provides extension methods for partial application - `Func.Apply` and `Action.Apply`, as well as extension methods for delegate `Type` conversion.
 
+Extensions targeted for supporting Ninject can be found at [MethodToDelegate.Ninject](https://github.com/willryan/MethodToDelegate.Ninject).
+
 TODO: Support Generic Delegates
