@@ -2,12 +2,11 @@
 
 Create delegates from (partially applied) methods.
 
-MethodToDelegate partners with your Dependency Injection framework to turn a MethodInfo object into a delegate type.
-If your delegate has 3 parameters and your method has 5, the first two parameters will be supplied by depedency injection.
+MethodToDelegate partners with your Dependency Injection framework to turn a MethodInfo object into a delegate type. It uses partially application on the first N arguments of your method that are not found in the delegate signature. For example, if your delegate has 3 parameters and your method has 5, the first 2 parameters will be supplied by depedency injection.
 
-Use the ToDelegate attribute to tag methods with the delegate type into which they should be converted.  See the tests *GenerateTest.cs for examples.
+See the files in MethodToDelegate.Test/ for examples on how to set up delegate-based dependency injection on methods, how to wire them into your dependency injection framework, and how to run unit tests against your methods. Here are the basic instructions:
 
-Then, use the following methods:
+Use the ToDelegate attribute to tag methods with the delegate type into which they should be converted. Then, use the following methods:
 
 DelegateHelper.GetDelegateTypesAndMethods(Type) takes a Type for a class, and returns the pair of delegate type and MethodInfo for each public static method using the ToDelegate attribute.
 
