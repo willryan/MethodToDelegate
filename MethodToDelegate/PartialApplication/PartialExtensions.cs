@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MethodToDelegate 
+namespace MethodToDelegate.PartialApplication 
 {
     public static class PartialExtensions 
     {

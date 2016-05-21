@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using MethodToDelegate.PartialApplication;
 
-namespace MethodToDelegate.Test
+namespace MethodToDelegate.Test.PartialApplication
 {
     public delegate T3 Combine<T1,T2,T3>(T1 one, T2 two);
 

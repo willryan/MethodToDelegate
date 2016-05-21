@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace MethodToDelegate
+namespace MethodToDelegate.PartialApplication
 {
     public class PartialTable : Dictionary<PartialApplicationInfo, MethodInfo>
     {

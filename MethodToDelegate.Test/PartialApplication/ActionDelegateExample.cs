@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using MethodToDelegate.PartialApplication;
 
-namespace MethodToDelegate.Test
+namespace MethodToDelegate.Test.PartialApplication
 {
     public delegate void RepeatedlyAddToList(List<string> list, string elem, int times);
 

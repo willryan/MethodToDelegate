@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace MethodToDelegate
+namespace MethodToDelegate.PartialApplication
 {
     [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
     [ImmutableObject(true)]

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,40 +33,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DelegateExtensions.cs" />
-    <Compile Include="PartialApplicationAttribute.cs" />
-    <Compile Include="DelegateHelper.cs" />
-    <Compile Include="ToDelegateAttribute.cs" />
-    <Compile Include="MethodBindingException.cs" />
-    <Compile Include="PartialApplicationInfo.cs" />
-    <Compile Include="PartialExtensions.cs">
+    <Compile Include="PartialApplication\DelegateExtensions.cs" />
+    <Compile Include="PartialApplication\PartialApplicationAttribute.cs" />
+    <Compile Include="PartialApplication\DelegateHelper.cs" />
+    <Compile Include="PartialApplication\ToDelegateAttribute.cs" />
+    <Compile Include="PartialApplication\PartialApplicationInfo.cs" />
+    <Compile Include="PartialApplication\PartialExtensions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PartialExtensions.tt</DependentUpon>
     </Compile>
-    <None Include="PartialSupport.tt">
+    <Compile Include="ReturnDelegate\ReturnDelegateRegistrar.cs" />
+    <Compile Include="ReturnDelegate\ExcludeDelegateAttribute.cs" />
+    <None Include="PartialApplication\PartialSupport.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PartialSupport.cs</LastGenOutput>
     </None>
-    <Compile Include="PartialSupport.cs">
+    <Compile Include="PartialApplication\PartialSupport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PartialSupport.tt</DependentUpon>
     </Compile>
-    <Compile Include="PartialTable.cs" />
+    <Compile Include="PartialApplication\PartialTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PartialExtensions.tt">
+    <None Include="PartialApplication\PartialExtensions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PartialExtensions.cs</LastGenOutput>
     </None>
@@ -74,14 +67,10 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

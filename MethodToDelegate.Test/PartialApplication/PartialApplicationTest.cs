@@ -1,13 +1,13 @@
 using System;
 using System.Linq;
+using MethodToDelegate.PartialApplication;
 using NUnit.Framework;
 
-namespace MethodToDelegate.Test
+namespace MethodToDelegate.Test.PartialApplication
 {
     [TestFixture]
     public class PartialApplicationTest
     {
-
         [Test]
         public void Test_Linq()
         {

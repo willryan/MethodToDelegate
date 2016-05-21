@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using Moq;
 using NUnit.Framework;
 
-namespace MethodToDelegate.Test
+namespace MethodToDelegate.Test.PartialApplication
 {
     // A test that shows how this code pattern would be tested
     [TestFixture]

@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "Moq": "4.2.1510.2205",
+    "NUnit": "3.2.0"
+  },
+  "frameworks": {
+    "net46": { }
+  },
+  "runtimes": {
+    "win": { }
+  }
+}

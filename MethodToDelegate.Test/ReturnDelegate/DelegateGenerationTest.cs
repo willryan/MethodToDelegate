@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
 
-namespace MethodToDelegate.Test
+namespace MethodToDelegate.Test.ReturnDelegate
 {
     [TestFixture]
     public class DelegateGenerationTest
@@ -15,10 +15,12 @@ namespace MethodToDelegate.Test
         public void Before()
         {
             var di = new QDDI();
-            di.Load(typeof(DelegateExample));
+            di.Load2(typeof(DelegateExample));
             // vanilla
-            DelegateExample.Pythag vanillaPythag = (x, y) => DelegateExample.Pythagr(DelegateExample.Addr, DelegateExample.Multr, DelegateExample.Sqrtr, x, y);
-            _vanilla = (x, y) => DelegateExample.PythagD(vanillaPythag, DelegateExample.DoubleToStringr, x, y);
+            var vanillaPythag = DelegateExample.Pythagr(
+                DelegateExample.Addr(), DelegateExample.Multr(), 
+                DelegateExample.Sqrtr());
+            _vanilla = DelegateExample.PythagD(vanillaPythag, DelegateExample.DoubleToStringr());
             // Dependency generated
             _dependencyGenerated = di.Get<PythagDisplay>();
         }

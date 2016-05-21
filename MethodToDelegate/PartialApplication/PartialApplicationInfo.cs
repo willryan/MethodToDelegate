@@ -1,6 +1,5 @@
-﻿namespace MethodToDelegate
+﻿namespace MethodToDelegate.PartialApplication
 {
-
     public enum PartialApplicationType
     {
         Func,

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using NUnit.Framework;
 
-namespace MethodToDelegate.Test
+namespace MethodToDelegate.Test.PartialApplication
 {
     [TestFixture]
     public class GenericDelegateGenerationTest

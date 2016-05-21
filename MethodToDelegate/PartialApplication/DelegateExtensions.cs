@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MethodToDelegate
+namespace MethodToDelegate.PartialApplication
 {
     public static class DelegateExtensions
     {
@@ -16,6 +12,11 @@ namespace MethodToDelegate
         public static Delegate ToDelegate(this Delegate delg, Type delegateType)
         {
             return Delegate.CreateDelegate(delegateType, delg.Target, delg.Method);
+        }
+
+        public static bool IsDelegate(this Type type)
+        {
+            return type.IsSubclassOf(typeof (Delegate));
         }
     }
 }

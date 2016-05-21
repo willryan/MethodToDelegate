@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace MethodToDelegate
+namespace MethodToDelegate.PartialApplication
 {
-    public delegate object ProvideDependency(Type dependencyType);
+    public delegate object ProvideDependency(Type dependencyType, params Attribute[] attributes);
 
     public struct DelegateTypeAndMethodInfo
     {
@@ -13,24 +13,44 @@ namespace MethodToDelegate
         public MethodInfo MethodInfo;
     }
 
+    public struct DependencyRequest
+    {
+        public Type DependencyType;
+        public Attribute[] Attributes;
+    }
+
     public struct DelegateBuildInfo
     {
         public Type DelegateType;
         public Delegate MethodDelegate;
         public MethodInfo ConversionFunc;
-        public Type[] DependencyTypes;
+        public DependencyRequest[] DependencyTypes;
     }
 
     public static class DelegateHelper
     {
         public static IEnumerable<DelegateTypeAndMethodInfo> GetDelegateTypesAndMethods(Type type)
         {
+            return GetDelegateInfos(type, methodInfo =>
+            {
+                var attribute =
+                    (ToDelegateAttribute) methodInfo.GetCustomAttributes().FirstOrDefault(a => a is ToDelegateAttribute);
+                return attribute?.Type;
+            });
+        }
+        public static IEnumerable<DelegateTypeAndMethodInfo> GetDelegateReturningMethods(Type type)
+        {
+            return GetDelegateInfos(type, methodInfo => 
+                methodInfo.ReturnType.IsDelegate() ? methodInfo.ReturnType : null);
+        }
+
+        public static IEnumerable<DelegateTypeAndMethodInfo> GetDelegateInfos(Type type,
+            Func<MethodInfo, Type> typeExtractor)
+        {
             return type.GetMethods(BindingFlags.Static | BindingFlags.Public)
                 .Select(methodInfo =>
                 {
-                    var attribute =
-                        (ToDelegateAttribute) methodInfo.GetCustomAttributes().FirstOrDefault(a => a is ToDelegateAttribute);
-                    var delgType = attribute != null ? attribute.Type : null;
+                    var delgType = typeExtractor(methodInfo);
                     return new DelegateTypeAndMethodInfo {DelegateType = delgType, MethodInfo = methodInfo};
                 })
                 .Where(obj => obj.DelegateType != null);
@@ -70,7 +90,7 @@ namespace MethodToDelegate
             var depTypes =
                 methodInfo.GetParameters()
                     .Take(depCount)
-                    .Select(d => d.ParameterType)
+                    .Select(d => new DependencyRequest { DependencyType = d.ParameterType, Attributes = d.GetCustomAttributes().ToArray() })
                     .ToArray();
             return new DelegateBuildInfo
             {
@@ -89,7 +109,7 @@ namespace MethodToDelegate
             }
             var deps =
                 info.DependencyTypes
-                    .Select(x => dependencyProvider(x))
+                    .Select(d => dependencyProvider(d.DependencyType, d.Attributes))
                     .ToArray();
             var args = new object[info.DependencyTypes.Length + 1];
             args[0] = info.MethodDelegate;
