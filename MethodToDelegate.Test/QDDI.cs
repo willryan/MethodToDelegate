@@ -31,10 +31,11 @@ namespace MethodToDelegate.Test
         public void Load2(params Type[] types)
         {
             var delgs = types.SelectMany(t => 
-                ReturnDelegateRegistrar.Register(t, pi => Get(pi.ParameterType))).ToArray();
+                ReturnDelegateRegistrar.Register<QDDI>(t, (ctx, pi) => 
+                    ctx.Get(pi.ParameterType))).ToArray();
             foreach (var delg in delgs)
             {
-                _typeProvider.Add(delg.MethodInfo.ReturnType, delg.Producer);
+                _typeProvider.Add(delg.MethodInfo.ReturnType, () => delg.Producer(this));
             }
         }
 

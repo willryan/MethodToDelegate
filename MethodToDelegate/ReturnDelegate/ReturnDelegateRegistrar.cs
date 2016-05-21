@@ -4,15 +4,15 @@ using System.Reflection;
 
 namespace MethodToDelegate.ReturnDelegate
 {
-    public struct RegisterableDelegate
+    public struct RegisterableDelegate<TContext>
     {
         public MethodInfo MethodInfo;
-        public Func<object> Producer;
+        public Func<TContext,object> Producer;
     }
 
     public static class ReturnDelegateRegistrar
     {
-        public static RegisterableDelegate[] Register(Type t, Func<ParameterInfo,object> getFunc,
+        public static RegisterableDelegate<TContext>[] Register<TContext>(Type t, Func<TContext,ParameterInfo,object> getFunc,
             Func<Type, MethodInfo, bool> filter = null)
         {
             return t.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
@@ -22,10 +22,11 @@ namespace MethodToDelegate.ReturnDelegate
                 .Select(m =>
                 {
                     var parms = m.GetParameters();
-                    return new RegisterableDelegate
+                    return new RegisterableDelegate<TContext>
                     {
                         MethodInfo = m,
-                        Producer = () => m.Invoke(null, parms.Select(getFunc).ToArray())
+                        Producer = ctx => 
+                            m.Invoke(null, parms.Select(p => getFunc(ctx, p)).ToArray())
                     };
                 })
                 .ToArray();
